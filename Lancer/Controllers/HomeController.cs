@@ -28,11 +28,22 @@ namespace Lancer.Controllers
         {
             return View();
         }
-        [Route("Contact")]
+ 
+        // GET: ContactController/Create
+        [HttpGet, Route("Contact")]
         public IActionResult Contact()
         {
             return View();
         }
+        // Post: ContactController/Create
+        [HttpPost, Route("Contact")]
+        public IActionResult Contact([Bind("firstName", "latName", "email", "message")]ContactViewModel contact)
+        {
+            Debug.Write(contact.firstName);
+            return View();
+        }
+    
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -1,7 +1,46 @@
 ﻿@model ContactViewModel
 @{
     ViewData["Title"] = "Contact";
+    Layout = "_Layout";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Contact form here</p>
+    <div class="top-container">
+        <div class="fluid-container">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Contact Form</h1>
+                    <p class="lead">Have a question or want more information?</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<section id="body">
+    <div class="fluid-container">
+        <fieldset>
+            @using (Html.BeginForm())
+            {
+                <p>
+                    @Html.LabelFor(x => x.firstName)
+                    @Html.EditorFor(x => x.firstName)
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.lastName)
+                    @Html.EditorFor(x => x.lastName)
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.email)
+                    @Html.EditorFor(x => x.email)
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.message)
+                    @Html.EditorFor(x => x.message)
+                </p>
+            }
+            <button type="submit">Submi</button>
+        </fieldset>
+    </div>
+</section>
+<hr>
