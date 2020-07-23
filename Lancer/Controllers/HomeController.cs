@@ -9,6 +9,7 @@ using Lancer.Models;
 
 namespace Lancer.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,16 +18,17 @@ namespace Lancer.Controllers
         {
             _logger = logger;
         }
-
+        [Route("")]
         public IActionResult Index()
         {
             return View();
         }
-
+        [Route("Privacy")]
         public IActionResult Privacy()
         {
             return View();
         }
+        [Route("Contact")]
         public IActionResult Contact()
         {
             return View();
