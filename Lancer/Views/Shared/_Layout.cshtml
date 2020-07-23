@@ -23,7 +23,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm fixed-top navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Software Engineer</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -50,11 +50,36 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Lancer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <section id="footer">
+        <div class="bottom-container">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Links</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="https://www.linkedin.com/in/gabriel-vega-8882291aa/">LinkedIn</a>
+                    </div>
+                </li>
+                <!--  Need to work on finding jobs to need enough help
+                  <li class="nav-item">
+                    <a class="nav-link" href="careers.html">Careers</a>
+                  </li>-->
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><small>© 2020 Gabriel Vega</small></a>
+                </li>
+            </ul>
+            <p class="copyright">Software Engineer <span class="badge badge-secondary">Full Stack Developer</span></p>
+            <audio controls loop>
+                <source src="happy.mp3"
+                        type="audio/mp3">
+            </audio>
         </div>
-    </footer>
+    </section>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
