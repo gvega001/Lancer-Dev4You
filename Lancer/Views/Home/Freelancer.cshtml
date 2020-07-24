@@ -1,0 +1,53 @@
+﻿
+@model Lancer.Models.FreeLancerViewModel
+@{
+    ViewData["Title"] = "Freelancer";
+    Layout = "_Layout";
+}
+
+    <div class="top-container">
+        <div class="fluid-container">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Create Freelancer</h1>
+                    <p class="lead">Pro Freelancer</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<section id="body">
+    <div class="fluid-container">
+        <fieldset>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <p>
+                    @Html.LabelFor(x => x.FirstName)
+                    @Html.EditorFor(x => x.FirstName)
+                    @Html.ValidationMessageFor(x=> x.FirstName)
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.LastName)
+                    @Html.EditorFor(x => x.LastName)
+                    @Html.ValidationMessageFor(x=> x.LastName)
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.Email)
+                    @Html.EditorFor(x => x.Email)
+                    @Html.ValidationMessageFor(x=> x.Email)
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.Message)
+                    @Html.EditorFor(x => x.Message)
+                    @Html.ValidationMessageFor(x=> x.Message)
+                </p>
+                <button type="submit">Submit</button>
+            }
+
+        </fieldset>
+    </div>
+</section>
+<hr>

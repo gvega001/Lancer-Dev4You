@@ -54,5 +54,10 @@ namespace Lancer.Controllers
         {
             return View();
         }
+        [HttpGet, Route("Freelancer")]
+        public IActionResult Freelancer()
+        {
+            return View();
+        }
     }
 }
