@@ -6,6 +6,7 @@ namespace Lancer.Models
 {
     public class BidViewModel
     {
+
         public Guid Id { get; private set; } = Guid.NewGuid();
         public bool ShowRequestId => Id != null;
         public Decimal Amount { get; set; }
