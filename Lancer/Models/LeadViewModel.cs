@@ -1,4 +1,5 @@
 using System;
+using System.Security.Policy;
 
 namespace Lancer.Models
 {
@@ -10,5 +11,6 @@ namespace Lancer.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
+        public DateTime Date {get; set;}
     }
 }

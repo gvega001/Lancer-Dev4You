@@ -16,7 +16,7 @@ namespace Lancer.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
-        public bool notifications { get; set; }
+        public bool Notifications { get; set; }
         public BusinessAccountViewModel BusinessAccount { get; set; }
 
     }

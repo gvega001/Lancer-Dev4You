@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Lancer.Models
 {
-    public class ProjectViewModel
+    public class MilestonesViewModel
     {
         public Guid Id { get; private set; } = Guid.NewGuid();
         public bool ShowRequestId => Id != null;
@@ -11,7 +11,6 @@ namespace Lancer.Models
         public DateTime DaysToDelivery { get; set; }
         public string Descriptions { get; set; }
         public string Summary { get; set; }
-        public FreeLancerViewModel FreeLancer { get; set; }
-        //milestones
+       
     }
 }
