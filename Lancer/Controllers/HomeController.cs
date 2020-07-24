@@ -54,9 +54,17 @@ namespace Lancer.Controllers
         {
             return View();
         }
+        // GET: ContactController/Create
         [HttpGet, Route("Freelancer")]
         public IActionResult Freelancer()
         {
+            return View();
+        }
+        // Post: ContactController/Create
+        [HttpPost, Route("Freelancer")]
+        public IActionResult Freelancer(FreeLancerViewModel Lancer)
+        {
+            Console.WriteLine(Lancer);
             return View();
         }
     }

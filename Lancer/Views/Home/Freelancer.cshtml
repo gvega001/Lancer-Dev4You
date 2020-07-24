@@ -40,10 +40,31 @@
                     @Html.ValidationMessageFor(x=> x.Email)
                 </p>
                 <p>
-                    @Html.LabelFor(x => x.Message)
-                    @Html.EditorFor(x => x.Message)
-                    @Html.ValidationMessageFor(x=> x.Message)
+                    @Html.LabelFor(x => x.Phone)
+                    @Html.EditorFor(x => x.Phone)
+                    @Html.ValidationMessageFor(x=> x.Phone)
                 </p>
+                <p>
+                    @Html.LabelFor(x => x.Address)
+                    @Html.EditorFor(x => x.Address)
+                    @Html.ValidationMessageFor(x=> x.Address)
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.City)
+                    @Html.EditorFor(x => x.City)
+                    @Html.ValidationMessageFor(x=> x.City)
+                </p>
+                <p>
+                    @Html.LabelFor(x => x.State)
+                    @Html.EditorFor(x => x.State)
+                    @Html.ValidationMessageFor(x=> x.State)
+                </p>
+                  <p>
+                    @Html.LabelFor(x => x.ZipCode)
+                    @Html.EditorFor(x => x.ZipCode)
+                    @Html.ValidationMessageFor(x=> x.ZipCode)
+                </p>
+      
                 <button type="submit">Submit</button>
             }
 
