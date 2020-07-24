@@ -1,14 +1,15 @@
 using System;
-
+using Microsoft.AspNetCore.Mvc;
 namespace Lancer.Models
 {
+    [BindProperties]
     public class LeadContactViewModel
     {
         public Guid Id { get; private set; } = Guid.NewGuid();
 
         public bool ShowRequestId => Id!=null;
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string First_Name { get; set; }
+        public string Last_Name { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
         public string Phone { get; set; }
