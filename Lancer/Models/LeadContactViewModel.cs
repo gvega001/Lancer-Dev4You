@@ -2,7 +2,6 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 namespace Lancer.Models
 {
-    [BindProperties]
     public class LeadContactViewModel
     {
         public Guid Id { get; private set; } = Guid.NewGuid();

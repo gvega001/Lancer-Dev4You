@@ -5,70 +5,55 @@
     Layout = "_Layout";
 }
 
-    <div class="top-container">
-        <div class="fluid-container">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h1 class="display-4">Create Freelancer</h1>
-                    <p class="lead">Pro Freelancer</p>
-                </div>
+<div class="top-container">
+    <div class="fluid-container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Create Freelancer</h1>
+                <p class="lead">Pro Freelancer</p>
+
             </div>
         </div>
-
     </div>
 
-
-<section id="body">
-    <div class="fluid-container">
-        <fieldset>
-            @using (Html.BeginForm())
-            {
-                @Html.ValidationSummary()
-                <p>
-                    @Html.LabelFor(x => x.FirstName)
-                    @Html.EditorFor(x => x.FirstName)
-                    @Html.ValidationMessageFor(x=> x.FirstName)
-                </p>
-                <p>
-                    @Html.LabelFor(x => x.LastName)
-                    @Html.EditorFor(x => x.LastName)
-                    @Html.ValidationMessageFor(x=> x.LastName)
-                </p>
-                <p>
-                    @Html.LabelFor(x => x.Email)
-                    @Html.EditorFor(x => x.Email)
-                    @Html.ValidationMessageFor(x=> x.Email)
-                </p>
-                <p>
-                    @Html.LabelFor(x => x.Phone)
-                    @Html.EditorFor(x => x.Phone)
-                    @Html.ValidationMessageFor(x=> x.Phone)
-                </p>
-                <p>
-                    @Html.LabelFor(x => x.Address)
-                    @Html.EditorFor(x => x.Address)
-                    @Html.ValidationMessageFor(x=> x.Address)
-                </p>
-                <p>
-                    @Html.LabelFor(x => x.City)
-                    @Html.EditorFor(x => x.City)
-                    @Html.ValidationMessageFor(x=> x.City)
-                </p>
-                <p>
-                    @Html.LabelFor(x => x.State)
-                    @Html.EditorFor(x => x.State)
-                    @Html.ValidationMessageFor(x=> x.State)
-                </p>
-                  <p>
-                    @Html.LabelFor(x => x.ZipCode)
-                    @Html.EditorFor(x => x.ZipCode)
-                    @Html.ValidationMessageFor(x=> x.ZipCode)
-                </p>
-      
-                <button type="submit">Create Lancer</button>
-            }
-
-        </fieldset>
+</div>
+<form method="post" class="form-horizontal">
+    <div class="form-group" asp-validation-summary="All">
+        <label asp-for="FirstName" class="col-md-2 control-label">First Name</label>
+        <div class="col-md-10">
+            <input asp-for="FirstName" class="form-control" />
+        </div>
+        <label asp-for="LastName" class="col-md-2 control-label">Last Name</label>
+        <div class="col-md-10">
+            <input asp-for="LastName" class="form-control" />
+        </div>
+        <label asp-for="Email" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Email" class="form-control" />
+        </div>
+        <label asp-for="Phone" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Phone" asp-area="3" class="form-control" />
+        </div>
+        <label asp-for="Address" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Address" asp-area="3" class="form-control" />
+        </div>
+        <label asp-for="State" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="State" asp-area="3" class="form-control" />
+        </div>
+        <label asp-for="City" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="City" asp-area="3" class="form-control" />
+        </div>
+        <label asp-for="ZipCode" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="ZipCode" asp-area="3" class="form-control" />
+        </div>
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn btn-primary">Create</button>
+        </div>
     </div>
-</section>
+</form>
 <hr>

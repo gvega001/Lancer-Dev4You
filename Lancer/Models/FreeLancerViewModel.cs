@@ -44,5 +44,14 @@ namespace Lancer.Models
         public string ZipCode { get; set; }
         public bool Notifications { get; set; }
         List<BidViewModel> BidsForProjects{get;set; }
+        public bool IsNewFreeLancer(FreeLancerViewModel freeLancer)
+        {
+            if (freeLancer != null && freeLancer.ShowRequestId)
+            {
+                return true;
+            }
+            return false;
+        }
     }
+
 }
