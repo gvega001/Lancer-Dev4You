@@ -44,5 +44,15 @@ namespace Lancer.Controllers
         {
             return View();
         }
+        [HttpGet, Route("Services")]
+        public IActionResult Services()
+        {
+            return View();
+        }
+        [HttpGet, Route("Resume")]
+        public IActionResult Resume()
+        {
+            return View();
+        }
     }
 }
