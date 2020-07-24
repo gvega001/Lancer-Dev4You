@@ -25,13 +25,23 @@ namespace Lancer.Controllers
         {
             return View();
         }
-   
-   
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        // GET: ContactController/Create
+        [HttpGet, Route("Contact")]
+        public IActionResult Contact()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
+        }
+        // Post: ContactController/Create
+        [HttpPost, Route("Contact")]
+        public IActionResult Contact([Bind("firstName", "latName", "email", "message")] LeadViewModel lead)
+        {
+            return View();
+        }
+        [HttpGet, Route("Privacy")]
+        public IActionResult Privacy()
+        {
+            return View();
         }
     }
 }

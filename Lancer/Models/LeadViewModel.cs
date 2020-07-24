@@ -2,7 +2,7 @@ using System;
 
 namespace Lancer.Models
 {
-    public class ContactViewModel
+    public class LeadViewModel
     {
         public string RequestId { get; set; }
 
