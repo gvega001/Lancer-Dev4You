@@ -1,4 +1,4 @@
-﻿@model LeadViewModel
+﻿@model Lancer.Models.LeadViewModel
 @{
     ViewData["Title"] = "Contact";
     Layout = "_Layout";
@@ -38,8 +38,9 @@
                     @Html.LabelFor(x => x.Message)
                     @Html.EditorFor(x => x.Message)
                 </p>
+                <button type="submit">Submit</button>
             }
-            <button type="submit">Submit</button>
+
         </fieldset>
     </div>
 </section>

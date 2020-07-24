@@ -34,8 +34,9 @@ namespace Lancer.Controllers
         }
         // Post: ContactController/Create
         [HttpPost, Route("Contact")]
-        public IActionResult Contact([Bind("firstName", "latName", "email", "message")] LeadViewModel contact)
+        public IActionResult Contact(LeadViewModel contact)
         {
+            Console.WriteLine(contact);
             return View();
         }
         [HttpGet, Route("Privacy")]
