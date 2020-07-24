@@ -54,6 +54,11 @@ namespace Lancer.Controllers
         {
             return View();
         }
+        [HttpGet, Route("Login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
         // GET: ContactController/Create
         [HttpGet, Route("Freelancer")]
         public IActionResult Freelancer()

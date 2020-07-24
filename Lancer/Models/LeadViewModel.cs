@@ -4,7 +4,7 @@ using System.Security.Policy;
 using Microsoft.AspNetCore.Mvc;
 namespace Lancer.Models
 {
-    [BindProperties]
+
     public class LeadViewModel
     {
         [Required]
