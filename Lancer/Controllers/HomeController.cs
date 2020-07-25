@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Lancer.Models;
 using System.Data;
 using System.Net;
+using System.Linq;
 
 namespace Lancer.Controllers
 {
@@ -30,6 +31,7 @@ namespace Lancer.Controllers
         [HttpGet, Route("Contact")]
         public IActionResult Contact()
         {
+          
             return View();
         }
         // Post: ContactController/Create

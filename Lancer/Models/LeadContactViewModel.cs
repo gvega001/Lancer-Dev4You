@@ -3,13 +3,16 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
+
 namespace Lancer.Models
 {
     public class LeadContactViewModel
     {   [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
-        public bool ShowRequestId => Id == 0;
+
+      
         [Required]
         [DataType(DataType.Text)]
         [StringLength(100, MinimumLength = 3,

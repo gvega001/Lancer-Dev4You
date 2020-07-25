@@ -1,6 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
+
 namespace Lancer.Models
 {
     public class BusinessAccountViewModel
@@ -8,7 +10,7 @@ namespace Lancer.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
-        public bool ShowRequestId => Id == 0;
+
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Business Name")]

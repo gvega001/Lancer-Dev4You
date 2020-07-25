@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Policy;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
+
 namespace Lancer.Models
 {
 
@@ -11,7 +13,8 @@ namespace Lancer.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
-        public bool ShowRequestId => Id == 0;
+
+
         [Required]
         [EmailAddress, MaxLength(500)]
         [Display(Name = "Email Address")]

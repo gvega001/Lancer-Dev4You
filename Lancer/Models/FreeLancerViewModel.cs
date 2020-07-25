@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 namespace Lancer.Models
 {   
@@ -11,7 +12,8 @@ namespace Lancer.Models
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
-        public bool ShowRequestId => Id == 0;
+
+      
         [Required]
         [DataType(DataType.Text)]
         [StringLength(100, MinimumLength = 3,
