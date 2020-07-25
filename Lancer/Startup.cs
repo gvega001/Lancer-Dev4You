@@ -32,7 +32,7 @@ namespace Lancer
                     options.Conventions.AuthorizePage("/Freelancer");
                     options.Conventions.AllowAnonymousToPage("/Login");
                 });
-            services.AddDbContext<FreelancerDataContent>(options =>
+            services.AddDbContext<FreelancerDataContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("FreelancerDataContent");
                 options.UseSqlServer(connectionString);

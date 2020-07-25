@@ -14,8 +14,8 @@ namespace Lancer.Controllers
 
         
       private readonly ILogger<HomeController> _logger;
-        private readonly FreelancerDataContent _db;
-        public HomeController(ILogger<HomeController> logger, FreelancerDataContent db)
+        private readonly FreelancerDataContext _db;
+        public HomeController(ILogger<HomeController> logger, FreelancerDataContext db)
         {
             _logger = logger;
             _db = db;
