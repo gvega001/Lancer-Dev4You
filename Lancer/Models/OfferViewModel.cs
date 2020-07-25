@@ -14,15 +14,15 @@ namespace Lancer.Models
         public long Id { get; set; }
         public bool ShowRequestId => Id == 0;
         [Required]
-        public virtual ICollection<LeadContactViewModel> Lead { get; set; }
+        public LeadContactViewModel Lead { get; set; }
         [Required]
-        public virtual ICollection<ProjectViewModel> Project { get; set; }
-        [Required]
+        public ProjectViewModel Project { get; set; }
+ 
         public virtual ICollection<BidViewModel> Bids { get; set; }
         [Required]
-        public virtual ICollection<FreeLancerViewModel> FreeLancers { get; set; }
+        public FreeLancerViewModel FreeLancers { get; set; }
         [Required]
-        public virtual ICollection<FreeLancerViewModel> Business { get; set; }
+        public BusinessAccountViewModel Business { get; set; }
         public virtual ICollection<MilestonesViewModel> Milestones { get; set; }
     }
 }

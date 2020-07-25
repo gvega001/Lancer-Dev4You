@@ -45,7 +45,6 @@ namespace Lancer.Models
         [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
         public bool Notifications { get; set; }
-        [Required]
         public virtual ICollection<BusinessAccountViewModel> Businesses { get; set; }
         public BusinessAccountViewModel BusinessAccount { get; set; }
 

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lancer.Models
 {
@@ -26,7 +26,7 @@ namespace Lancer.Models
         [Required]
         [DataType(DataType.MultilineText)]
         public string Message { get; set; }
-        [Required]
+        [NotMapped]
         public virtual ICollection<FreeLancerViewModel> FreeLancers {get;set;}
         public virtual ICollection<MilestonesViewModel> Milestones { get; set; }
 
