@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lancer.Models
 {
 
-
     public class RegisterViewModel
     {
         [Required]

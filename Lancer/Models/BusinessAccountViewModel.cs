@@ -10,6 +10,7 @@ namespace Lancer.Models
         public bool ShowRequestId => Id!=null;
         [Required]
         [DataType(DataType.Text)]
+        [Display(Name = "Business Name")]
         public string BusinessName { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -28,6 +29,7 @@ namespace Lancer.Models
         public string State { get; set; }
         
         [DataType(DataType.Text)]
+        [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
 
     }

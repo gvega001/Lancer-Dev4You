@@ -11,11 +11,13 @@ namespace Lancer.Models
         [DataType(DataType.Text)]
         [StringLength(100, MinimumLength = 3,
            ErrorMessage = "Last Name must be between 3 and 100 characters long")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required]
         [DataType(DataType.Text)]
         [StringLength(100, MinimumLength = 3,
            ErrorMessage = "Last Name must be between 3 and 100 characters long")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -26,17 +28,18 @@ namespace Lancer.Models
         [Required]
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
-        [Required]
+       
         [DataType(DataType.Text)]
         public string Address { get; set; }
-        [Required]
+  
         [DataType(DataType.Text)]
         public string City { get; set; }
-        [Required]
+      
         [DataType(DataType.Text)]
         public string State { get; set; }
-        [Required]
+     
         [DataType(DataType.Text)]
+        [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
         public bool Notifications { get; set; }
         [Required]

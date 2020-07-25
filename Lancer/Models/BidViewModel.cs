@@ -15,6 +15,8 @@ namespace Lancer.Models
         public Decimal Amount { get; set; }
         [Required]
         [DataType(DataType.DateTime)]
+
+        [Display(Name = "Days To Delivery")]
         public DateTime DaysToDelivery { get; set; }
         [Required]
         [DataType(DataType.MultilineText)]
