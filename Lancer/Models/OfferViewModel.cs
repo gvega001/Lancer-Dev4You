@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 
 namespace Lancer.Models
 {
     public class OfferViewModel
     {
+        [Required]
         public Guid Id { get; private set; } = Guid.NewGuid();
         public bool ShowRequestId => Id != null;
         public LeadContactViewModel Contact { get; set; }

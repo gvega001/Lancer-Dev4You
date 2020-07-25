@@ -10,8 +10,8 @@ namespace Lancer.Models
     {
       
         [Required]
-        [EmailAddress, MaxLength(500)]
         [Display(Name = "Email Address")]
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
 
         [Required]

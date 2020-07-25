@@ -24,7 +24,8 @@ namespace Lancer.Models
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
         public string Email { get; set; }
-        [MinLength(50, ErrorMessage ="The minimum length of the message is 100 characters long")]
+        [Required]
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
     }
 }
