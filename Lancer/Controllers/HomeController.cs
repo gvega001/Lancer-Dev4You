@@ -86,6 +86,16 @@ namespace Lancer.Controllers
         public IActionResult Register(LoginViewModel login)
         {
             return View();
+        } 
+        [HttpGet, Route("Bid")]
+        public IActionResult Bid()
+        {
+            return View();
+        }
+        [HttpPost, Route("Bid")]
+        public IActionResult Bid(BidViewModel bid)
+        {
+            return View();
         }
     }
 }

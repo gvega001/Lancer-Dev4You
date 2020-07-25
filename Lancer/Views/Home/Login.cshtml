@@ -1,52 +1,59 @@
 ﻿
 @model Lancer.Models.LoginViewModel
 @{
+    ViewData["Title"] = "Login";
     Layout = "_Layout";
 }
+    <fieldset class="Login">
 
-<fieldset class="account">
+        <div class="top-container">
+            <div class="fluid-container">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">Login</h1>
+                        <p class="lead">User Login</p>
+                    </div>
+                </div>
+            </div>
 
-    <h1>Login</h1>
-    <br />
-    <form role="form" asp-action="Login">
-
-        <div asp-validation-summary="All" class="input-validation-error"></div>
-    
-        <div class="form-group">
-            <label asp-for="EmailAddress"></label>
-            <input type="email" asp-for="EmailAddress" class="form-control" />
-            <span asp-validation-for="EmailAddress" class="field-validation-error"></span>
         </div>
+        <form asp-action="View">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RememberMe" class="control-label"></label>
+                <input asp-for="RememberMe" class="form-control" />
+                <span asp-validation-for="RememberMe" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+
+        <br />
 
         <div class="form-group">
-            <label asp-for="Password"></label>
-            <input type="password" asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="field-validation-error"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="ConfirmPassword"></label>
-            <input type="password" asp-for="ConfirmPassword" class="form-control" />
-            <span asp-validation-for="ConfirmPassword" class="field-validation-error"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="RememberMe"></label>
-            <input type="checkbox" asp-for="RememberMe" />
-            <span asp-validation-for="RememberMe" class="field-validation-error"></span>
+            <label>Not Registered?</label>
+            <a asp-action="Register">Create a new account</a>
         </div>
         <div>
-            <label>&nbsp;</label>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <a asp-action="Index">Back to List</a>
         </div>
 
-    </form>
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+    </fieldset>
 
-    <br />
 
-    <div class="form-group">
-        <label>Not Registered?</label>
-        <a asp-action="Register">Create a new account</a>
-    </div>
-
-</fieldset>
