@@ -4,45 +4,53 @@
     Layout = "_Layout";
 }
 
-    <div class="top-container">
-        <div class="fluid-container">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h1 class="display-4">Contact Form</h1>
-                    <p class="lead">Have a question or want more information?</p>
+   
+
+
+    <fieldset class="Contact">
+
+        <div class="top-container">
+            <div class="fluid-container">
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4">Contact Form</h1>
+                        <p class="lead">Have a question or want more information?</p>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-    </div>
-
-
-<section id="body">
-<div class="col-md-offset-2 col-md-10">
+        <br />
         <div asp-validation-summary="All" class="text-danger"></div>
-    </div> 
-        <form method="post" class="form-horizontal">
+        <form role="form" asp-action="Contact">
+
             <div class="form-group">
                 <label asp-for="FirstName" class="col-md-2 control-label">First Name</label>
-                <div class="col-md-10">
-                    <input asp-for="FirstName" class="form-control" />
-                </div>
-                <label asp-for="LastName" class="col-md-2 control-label">Last Name</label>
-                <div class="col-md-10">
-                    <input asp-for="LastName" class="form-control" />
-                </div>
-                <label asp-for="Email" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="Email" class="form-control" />
-                </div>
-                <label asp-for="Message" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="Message" asp-area="3" class="form-control" />
-                </div>
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="submit" class="btn btn btn-primary">Create</button>
-                </div>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="field-validation-error"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="col-md-2 control-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="col-md-2 control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="field-validation-error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message" class="col-md-2 control-label"></label>
+                <input asp-for="Message" asp-area="3" class="form-control" />
+                <span asp-validation-for="Message" class="field-validation-error"></span>
+            </div>
+            <br />
+            <div>
+                <label>&nbsp;</label>
+                <button type="submit" class="btn btn btn-primary">Create</button>
+            </div>
+
         </form>
- </section>
-<hr>
+    </fieldset>
+        <hr>
