@@ -13,19 +13,20 @@ namespace Lancer.Controllers
     {
 
         
-      /*  private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+      private readonly ILogger<HomeController> _logger;
+        private readonly FreelancerDataContent _db;
+        public HomeController(ILogger<HomeController> logger, FreelancerDataContent db)
         {
             _logger = logger;
-        }*/
+            _db = db;
+        }
         [Route("")]
         public IActionResult Index()
         {
             return View();
         }
 
-        // GET: ContactController/Create
+        // GET: ContactController/
         [HttpGet, Route("Contact")]
         public IActionResult Contact()
         {
@@ -35,7 +36,16 @@ namespace Lancer.Controllers
         [HttpPost, Route("Contact")]
         public IActionResult Contact(LeadViewModel contact)
         {
-            Console.WriteLine(contact);
+            if (contact is null)
+            {
+                throw new ArgumentNullException(nameof(contact));
+            }
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.Leads.Add(contact);
+            _db.SaveChanges();
             return View();
         }
         [HttpGet, Route("Privacy")]
@@ -64,7 +74,16 @@ namespace Lancer.Controllers
         [HttpPost, Route("Freelancer")]
         public IActionResult Freelancer(FreeLancerViewModel Lancer)
         {
-            Console.WriteLine(Lancer);
+            if (Lancer is null)
+            {
+                throw new ArgumentNullException(nameof(Lancer));
+            }
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.FreeLancers.Add(Lancer);
+            _db.SaveChanges();
             return View();
         }
         [HttpGet, Route("Login")]
@@ -95,6 +114,12 @@ namespace Lancer.Controllers
                 throw new ArgumentNullException(nameof(register));
             }
 
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.Users.Add(register);
+            _db.SaveChanges();
             return View();
         } 
         [HttpGet, Route("Bid")]
@@ -109,7 +134,12 @@ namespace Lancer.Controllers
             {
                 throw new ArgumentNullException(nameof(bid));
             }
-
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.Bids.Add(bid);
+            _db.SaveChanges();
             return View();
         }
         [HttpGet, Route("Business")]
@@ -124,7 +154,12 @@ namespace Lancer.Controllers
             {
                 throw new ArgumentNullException(nameof(business));
             }
-
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.BusinessAcounts.Add(business);
+            _db.SaveChanges();
             return View();
         } 
         [HttpGet, Route("LeadContact")]
@@ -132,6 +167,7 @@ namespace Lancer.Controllers
         {
             return View();
         }
+
         [HttpPost, Route("LeadContact")]
         public IActionResult LeadContact(LeadContactViewModel leadContact)
         {
@@ -139,7 +175,12 @@ namespace Lancer.Controllers
             {
                 throw new ArgumentNullException(nameof(leadContact));
             }
-
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.LeadContacts.Add(leadContact);
+            _db.SaveChanges();
             return View();
         }
         [HttpGet, Route("Offer")]
@@ -154,7 +195,12 @@ namespace Lancer.Controllers
             {
                 throw new ArgumentNullException(nameof(offer));
             }
-
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.Offers.Add(offer);
+            _db.SaveChanges();
             return View();
         } 
         [HttpGet, Route("Milestone")]
@@ -163,13 +209,18 @@ namespace Lancer.Controllers
             return View();
         }
         [HttpPost, Route("Milestone")]
-        public IActionResult Milestone(MilestonesViewModel milestones)
+        public IActionResult Milestone(MilestonesViewModel milestone)
         {
-            if (milestones is null)
+            if (milestone is null)
             {
-                throw new ArgumentNullException(nameof(milestones));
+                throw new ArgumentNullException(nameof(milestone));
             }
-
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.Milestones.Add(milestone);
+            _db.SaveChanges();
             return View();
         } 
         [HttpGet, Route("Project")]
@@ -184,7 +235,12 @@ namespace Lancer.Controllers
             {
                 throw new ArgumentNullException(nameof(project));
             }
-
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.Projects.Add(project);
+            _db.SaveChanges();
             return View();
         }
     }
