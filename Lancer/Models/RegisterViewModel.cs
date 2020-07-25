@@ -8,6 +8,9 @@ namespace Lancer.Models
     public class RegisterViewModel
     {
         [Required]
+        public Guid Id { get; private set; } = Guid.NewGuid();
+        public bool ShowRequestId => Id != null;
+        [Required]
         [EmailAddress, MaxLength(500)]
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
