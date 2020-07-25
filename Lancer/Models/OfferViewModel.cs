@@ -1,25 +1,28 @@
+using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lancer.Models
 {
     public class OfferViewModel
     {
         [Required]
-        public Guid Id { get; private set; } = Guid.NewGuid();
-        public bool ShowRequestId => Id != null;
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long Id { get; set; }
+        public bool ShowRequestId => Id == 0;
         [Required]
-        public LeadContactViewModel Contact { get; set; }
+        public virtual ICollection<LeadContactViewModel> Lead { get; set; }
         [Required]
-        public ProjectViewModel Project { get; set; }
+        public virtual ICollection<ProjectViewModel> Project { get; set; }
         [Required]
-        public BidViewModel Bid { get; set; }
+        public virtual ICollection<BidViewModel> Bids { get; set; }
         [Required]
-        public FreeLancerViewModel FreeLancer { get; set; }
+        public virtual ICollection<FreeLancerViewModel> FreeLancers { get; set; }
         [Required]
-        public BusinessAccountViewModel Business{get; set;}
-        List<MilestonesViewModel> MilestonesViews { get; set; }
+        public virtual ICollection<FreeLancerViewModel> Business { get; set; }
+        public virtual ICollection<MilestonesViewModel> Milestones { get; set; }
     }
 }

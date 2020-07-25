@@ -1,13 +1,14 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Lancer.Models
 {
     public class BusinessAccountViewModel
     {
         [Required]
-        public Guid Id { get; private set; } = Guid.NewGuid();
-        public bool ShowRequestId => Id!=null;
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long Id { get; set; }
+        public bool ShowRequestId => Id == 0;
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Business Name")]

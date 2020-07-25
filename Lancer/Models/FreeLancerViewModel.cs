@@ -2,14 +2,16 @@ using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lancer.Models
-{   [Authorize]
+{   
     public class FreeLancerViewModel
     {
         [Required]
-        public Guid Id { get; private set; } = Guid.NewGuid();
-        public bool ShowRequestId => Id != null;
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long Id { get; set; }
+        public bool ShowRequestId => Id == 0;
         [Required]
         [DataType(DataType.Text)]
         [StringLength(100, MinimumLength = 3,
@@ -47,8 +49,8 @@ namespace Lancer.Models
         [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
         public bool Notifications { get; set; }
-        List<BidViewModel> BidsForProjects{get;set; }
-       
+        public virtual ICollection<BidViewModel> Bids { get; set; }
+
     }
 
 }

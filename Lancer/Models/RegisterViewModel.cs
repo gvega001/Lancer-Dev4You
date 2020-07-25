@@ -2,14 +2,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Policy;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Lancer.Models
 {
 
     public class RegisterViewModel
     {
         [Required]
-        public Guid Id { get; private set; } = Guid.NewGuid();
-        public bool ShowRequestId => Id != null;
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long Id { get; set; }
+        public bool ShowRequestId => Id == 0;
         [Required]
         [EmailAddress, MaxLength(500)]
         [Display(Name = "Email Address")]

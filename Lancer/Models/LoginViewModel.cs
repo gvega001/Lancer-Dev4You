@@ -8,9 +8,8 @@ namespace Lancer.Models
     [BindProperties]
     public class LoginViewModel: Attribute
     {
-        [Required]
-        public Guid Id { get; private set; } = Guid.NewGuid();
-        public bool ShowRequestId => Id != null;
+        
+   
         [Required]
         [Display(Name = "Email Address")]
         [DataType(DataType.EmailAddress)]
