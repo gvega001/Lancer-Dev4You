@@ -13,12 +13,12 @@ namespace Lancer.Controllers
     {
 
         
-        private readonly ILogger<HomeController> _logger;
+      /*  private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
+        }*/
         [Route("")]
         public IActionResult Index()
         {
@@ -75,6 +75,11 @@ namespace Lancer.Controllers
         [HttpPost, Route("Login")]
         public IActionResult Login(LoginViewModel login)
         {
+            if (login is null)
+            {
+                throw new ArgumentNullException(nameof(login));
+            }
+
             return View();
         }
         [HttpGet, Route("Register")]
@@ -83,8 +88,13 @@ namespace Lancer.Controllers
             return View();
         }
         [HttpPost, Route("Register")]
-        public IActionResult Register(LoginViewModel login)
+        public IActionResult Register(RegisterViewModel register)
         {
+            if (register is null)
+            {
+                throw new ArgumentNullException(nameof(register));
+            }
+
             return View();
         } 
         [HttpGet, Route("Bid")]
@@ -95,6 +105,86 @@ namespace Lancer.Controllers
         [HttpPost, Route("Bid")]
         public IActionResult Bid(BidViewModel bid)
         {
+            if (bid is null)
+            {
+                throw new ArgumentNullException(nameof(bid));
+            }
+
+            return View();
+        }
+        [HttpGet, Route("Business")]
+        public IActionResult Business()
+        {
+            return View();
+        }
+        [HttpPost, Route("Business")]
+        public IActionResult Business(BusinessAccountViewModel business)
+        {
+            if (business is null)
+            {
+                throw new ArgumentNullException(nameof(business));
+            }
+
+            return View();
+        } 
+        [HttpGet, Route("LeadContact")]
+        public IActionResult LeadContact()
+        {
+            return View();
+        }
+        [HttpPost, Route("LeadContact")]
+        public IActionResult LeadContact(LeadContactViewModel leadContact)
+        {
+            if (leadContact is null)
+            {
+                throw new ArgumentNullException(nameof(leadContact));
+            }
+
+            return View();
+        }
+        [HttpGet, Route("Offer")]
+        public IActionResult Offer()
+        {
+            return View();
+        }
+        [HttpPost, Route("Offer")]
+        public IActionResult Offer(OfferViewModel offer)
+        {
+            if (offer is null)
+            {
+                throw new ArgumentNullException(nameof(offer));
+            }
+
+            return View();
+        } 
+        [HttpGet, Route("Milestone")]
+        public IActionResult Milestone()
+        {
+            return View();
+        }
+        [HttpPost, Route("Milestone")]
+        public IActionResult Milestone(MilestonesViewModel milestones)
+        {
+            if (milestones is null)
+            {
+                throw new ArgumentNullException(nameof(milestones));
+            }
+
+            return View();
+        } 
+        [HttpGet, Route("Project")]
+        public IActionResult Project()
+        {
+            return View();
+        }
+        [HttpPost, Route("Project")]
+        public IActionResult Project(ProjectViewModel project)
+        {
+            if (project is null)
+            {
+                throw new ArgumentNullException(nameof(project));
+            }
+
             return View();
         }
     }
