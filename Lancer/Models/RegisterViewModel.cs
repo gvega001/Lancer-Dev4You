@@ -21,6 +21,7 @@ namespace Lancer.Models
         [Required]
         [Compare("Password", ErrorMessage = "Passwords must match")]
         [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }
 

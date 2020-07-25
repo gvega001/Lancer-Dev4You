@@ -7,7 +7,6 @@ namespace Lancer.Models
 
     public class LeadViewModel
     {
-        [Required]
         public Guid Id { get; private set; } = Guid.NewGuid();
         public bool ShowRequestId => Id != null;
         [Required]
