@@ -5,6 +5,7 @@ using Lancer.Models;
 using System.Data;
 using System.Net;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Lancer.Controllers
 {
@@ -26,9 +27,8 @@ namespace Lancer.Controllers
         {
             return View();
         }
+        [HttpGet]
 
-        // GET: ContactController/
-        [HttpGet, Route("Contact")]
         public IActionResult Contact()
         {
           
@@ -244,6 +244,27 @@ namespace Lancer.Controllers
             _db.Projects.Add(project);
             _db.SaveChanges();
             return View();
+        }  
+        [HttpGet, Route("FreelanceAdmin")]
+        public IActionResult FreelanceAdmin()
+        {
+            return View();
         }
+        [HttpPost, Route("FreelanceAdmin")]
+        public IActionResult FreelanceAdmin(ProjectViewModel project)
+        {
+            if (project is null)
+            {
+                throw new ArgumentNullException(nameof(project));
+            }
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            _db.Projects.Add(project);
+            _db.SaveChanges();
+            return View();
+        }
+   
     }
 }
