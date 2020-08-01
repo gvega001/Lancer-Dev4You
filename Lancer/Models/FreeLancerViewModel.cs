@@ -9,11 +9,9 @@ namespace Lancer.Models
 {   
     public class FreeLancerViewModel
     {
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-      
         [Required]
         [DataType(DataType.Text)]
         [StringLength(100, MinimumLength = 3,

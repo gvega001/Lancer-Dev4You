@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 namespace Lancer.Models
     {
-    [BindProperties]
     public class LoginViewModel: Attribute
     {
 

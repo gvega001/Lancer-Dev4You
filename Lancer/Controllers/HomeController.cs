@@ -6,6 +6,8 @@ using System.Data;
 using System.Net;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace Lancer.Controllers
 {
@@ -68,12 +70,14 @@ namespace Lancer.Controllers
        
         // GET: ContactController/Create
         [HttpGet, Route("Freelancer")]
+        [Authorize]
         public IActionResult Freelancer()
         {
             return View();
         }
         // Post: ContactController/Create
         [HttpPost, Route("Freelancer")]
+        [Authorize]
         public IActionResult Freelancer(FreeLancerViewModel Lancer)
         {
             if (Lancer is null)
@@ -104,6 +108,7 @@ namespace Lancer.Controllers
             return View();
         }
         [HttpGet, Route("Register")]
+        [Authorize]
         public IActionResult Register()
         {
             return View();
@@ -118,7 +123,7 @@ namespace Lancer.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("Login");
             }
             _db.Users.Add(register);
             _db.SaveChanges();
@@ -138,18 +143,20 @@ namespace Lancer.Controllers
             }
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("FreelanceAdmin");
             }
             _db.Bids.Add(bid);
             _db.SaveChanges();
             return View();
         }
         [HttpGet, Route("Business")]
+        [Authorize]
         public IActionResult Business()
         {
             return View();
         }
         [HttpPost, Route("Business")]
+        [Authorize]
         public IActionResult Business(BusinessAccountViewModel business)
         {
             if (business is null)
@@ -158,19 +165,21 @@ namespace Lancer.Controllers
             }
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("FreelanceAdmin");
             }
             _db.BusinessAcounts.Add(business);
             _db.SaveChanges();
             return View();
         } 
         [HttpGet, Route("LeadContact")]
+        [Authorize]
         public IActionResult LeadContact()
         {
             return View();
         }
 
         [HttpPost, Route("LeadContact")]
+        [Authorize]
         public IActionResult LeadContact(LeadContactViewModel leadContact)
         {
             if (leadContact is null)
@@ -179,18 +188,20 @@ namespace Lancer.Controllers
             }
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("FreelanceAdmin");
             }
             _db.LeadContacts.Add(leadContact);
             _db.SaveChanges();
             return View();
         }
         [HttpGet, Route("Offer")]
+        [Authorize]
         public IActionResult Offer()
         {
             return View();
         }
         [HttpPost, Route("Offer")]
+        [Authorize]
         public IActionResult Offer(OfferViewModel offer)
         {
             if (offer is null)
@@ -199,18 +210,20 @@ namespace Lancer.Controllers
             }
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("FreelanceAdmin");
             }
             _db.Offers.Add(offer);
             _db.SaveChanges();
             return View();
         } 
         [HttpGet, Route("Milestone")]
+        [Authorize]
         public IActionResult Milestone()
         {
             return View();
         }
         [HttpPost, Route("Milestone")]
+        [Authorize]
         public IActionResult Milestone(MilestonesViewModel milestone)
         {
             if (milestone is null)
@@ -219,19 +232,21 @@ namespace Lancer.Controllers
             }
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("FreelanceAdmin");
             }
             _db.Milestones.Add(milestone);
             _db.SaveChanges();
             return View();
         } 
         [Route("Project")]
+        [Authorize]
         public IActionResult Project()
         {
             return View();
         }
         [HttpPost, Route("Project")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Project(ProjectViewModel project)
         {
             if (project is null)
@@ -251,7 +266,22 @@ namespace Lancer.Controllers
         {
             return View(_db.Projects.ToList());
         }
-      
-   
+        // GET: Movies/Edit/5 
+        [HttpGet, Route("EditProject")]
+        public async Task<IActionResult> EditProject(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var project = await _db.Projects.FindAsync(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+            return View(_db.Projects.ToList());
+        }
+
     }
 }

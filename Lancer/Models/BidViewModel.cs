@@ -11,8 +11,7 @@ namespace Lancer.Models
 { 
     public class BidViewModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-   
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         [Required]
         [DataType(DataType.Currency)]

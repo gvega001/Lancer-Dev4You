@@ -10,8 +10,7 @@ namespace Lancer.Models
     
     public class LeadViewModel
     {
-        [Required]
-     
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set ; }
 
         [Required]

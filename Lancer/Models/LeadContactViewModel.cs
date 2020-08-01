@@ -8,8 +8,8 @@ using System.Text.RegularExpressions;
 namespace Lancer.Models
 {
     public class LeadContactViewModel
-    {   [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
       

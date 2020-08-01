@@ -10,8 +10,7 @@ namespace Lancer.Models
 {
     public class OfferViewModel
     {
-        [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         

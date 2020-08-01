@@ -1,50 +1,69 @@
-﻿@model IEnumerable<Lancer.Models.ProjectViewModel> 
+﻿@model IEnumerable<Lancer.Models.ProjectViewModel>
 @{
     ViewData["Title"] = "FreelanceAdmin";
     Layout = "_Layout";
 }
+<div class="top-container">
+    <img class="top-cloud" src="images/cloud.png" alt="cloud">
+    <div class="title-text">
+        <h1><span class="badge badge-secondary">Hi</span> I'm Gabriel Vega</h1>
+        <h2>a <span class="pro">pro</span>grammer</h2>
+    </div>
+    <img class="bottom-cloud" src="images/cloud.png" alt="cloud">
+    <img class="mountain"
+         src="images/mountain.png"
+         alt="mountain-img"
+         srcset="images/mountain-480.png 480w,
+                     images/mountain.png 960w,
+                     images/mountain.png 1440w,
+                      images/mountain.png 1920w"
+         sizes="(max-width:340px) 240px,
+                    (max-width:960px) 480px,
+                    (max-width:1440px) 960px,
+                    1920px">
+</div>
 
-    <grid-container>
+<grid-container>
+    <tr>
+        <td>
+
+            <h2>Projects</h2>
+        </td>
+    </tr>
+
+    <table class="table-responsive">
         <tr>
-            <td>
-
-                <h2>Projects</h2>
-            </td>
+            <th>Id</th>
+            <th>Amount</th>
+            <th>Days To Delivery</th>
+            <th>Description</th>
+            <th>Summary</th>
         </tr>
-
-        <table class="table-responsive">
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>Id</th>
-                <th>Amount</th>
-                <th>Days To Delivery</th>
-                <th>Description</th>
-                <th>Summary</th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DaysToDelivery)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descriptions)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Summary)
+                </td>
+                <td>
+                    <a asp-action="Project" asp-route-id="">Create</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
             </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DaysToDelivery)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descriptions)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Summary)
-                    </td>
-                    <td>
-                        <a asp-action="Project" asp-route-id="">Create</a> |
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
-            }
-        </table>
-    </grid-container>
+        }
+    </table>
+</grid-container>
