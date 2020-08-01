@@ -1,12 +1,50 @@
-﻿@model Lancer.Models.ProjectViewModel
+﻿@model IEnumerable<Lancer.Models.ProjectViewModel> 
 @{
     ViewData["Title"] = "FreelanceAdmin";
     Layout = "_Layout";
 }
-<tr>
-    <td>
-       <a asp-action="Edit" asp-route-id="@ViewBag" >Edit</a> |
-        <a asp-action="Details" asp-route-id="@ViewBag">Details</a> |
-        <a asp-action="Delete" asp-route-id="@ViewBag">Delete</a>
-    </td>
-</tr>
+
+    <grid-container>
+        <tr>
+            <td>
+
+                <h2>Projects</h2>
+            </td>
+        </tr>
+
+        <table class="table-responsive">
+            <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>Days To Delivery</th>
+                <th>Description</th>
+                <th>Summary</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DaysToDelivery)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descriptions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Summary)
+                    </td>
+                    <td>
+                        <a asp-action="Project" asp-route-id="">Create</a> |
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </grid-container>

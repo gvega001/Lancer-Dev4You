@@ -225,12 +225,13 @@ namespace Lancer.Controllers
             _db.SaveChanges();
             return View();
         } 
-        [HttpGet, Route("Project")]
+        [Route("Project")]
         public IActionResult Project()
         {
             return View();
         }
         [HttpPost, Route("Project")]
+        [ValidateAntiForgeryToken]
         public IActionResult Project(ProjectViewModel project)
         {
             if (project is null)
@@ -239,7 +240,7 @@ namespace Lancer.Controllers
             }
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("FreelanceAdmin");
             }
             _db.Projects.Add(project);
             _db.SaveChanges();
@@ -248,8 +249,7 @@ namespace Lancer.Controllers
         [HttpGet, Route("FreelanceAdmin")]
         public IActionResult FreelanceAdmin()
         {
-            var projects = _db.Projects.OrderByDescending(x=> x.Id).Take(5).ToArray();
-            return View(projects);
+            return View(_db.Projects.ToList());
         }
       
    

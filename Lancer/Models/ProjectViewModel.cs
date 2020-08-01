@@ -11,7 +11,7 @@ namespace Lancer.Models
  
     public class ProjectViewModel
     {
-        [Required]
+       
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
 
