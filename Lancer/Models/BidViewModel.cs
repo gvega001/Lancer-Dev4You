@@ -4,18 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lancer.Models
-{
+{   [BindProperties]
     public class BidViewModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Required]
+   
         public long Id { get; set; }
-
-    
-       
         [Required]
         [DataType(DataType.Currency)]
         public Decimal Amount { get; set; }
