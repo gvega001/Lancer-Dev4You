@@ -27,7 +27,7 @@ namespace Lancer.Controllers
         {
             return View();
         }
-        [HttpGet]
+        [HttpGet, Route("Contact")]
 
         public IActionResult Contact()
         {
@@ -248,23 +248,10 @@ namespace Lancer.Controllers
         [HttpGet, Route("FreelanceAdmin")]
         public IActionResult FreelanceAdmin()
         {
-            return View();
+            var projects = _db.Projects.OrderByDescending(x=> x.Id).Take(5).ToArray();
+            return View(projects);
         }
-        [HttpPost, Route("FreelanceAdmin")]
-        public IActionResult FreelanceAdmin(ProjectViewModel project)
-        {
-            if (project is null)
-            {
-                throw new ArgumentNullException(nameof(project));
-            }
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            _db.Projects.Add(project);
-            _db.SaveChanges();
-            return View();
-        }
+      
    
     }
 }

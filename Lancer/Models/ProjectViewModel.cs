@@ -4,9 +4,11 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lancer.Models
 {
+ 
     public class ProjectViewModel
     {
         [Required]
@@ -25,8 +27,6 @@ namespace Lancer.Models
         [Required]
         [DataType(DataType.MultilineText)]
         public string Summary { get; set; }
-        [Required]
-        public FreeLancerViewModel FreeLancers { get; set; }
-        public virtual ICollection<MilestonesViewModel> Milestones { get; set; }
+    
     }
 }

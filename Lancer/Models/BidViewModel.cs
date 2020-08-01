@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lancer.Models
-{   [BindProperties]
+{ 
     public class BidViewModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

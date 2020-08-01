@@ -7,11 +7,11 @@ using System.Text.RegularExpressions;
 
 namespace Lancer.Models
 {
-    [BindProperties]
+    
     public class LeadViewModel
     {
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+     
         public long Id { get; set ; }
 
         [Required]

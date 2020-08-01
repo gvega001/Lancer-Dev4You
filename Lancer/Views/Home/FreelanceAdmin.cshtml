@@ -1,12 +1,12 @@
-﻿@model Lancer.Models.LeadViewModel
+﻿@model Lancer.Models.ProjectViewModel
 @{
     ViewData["Title"] = "FreelanceAdmin";
     Layout = "_Layout";
 }
 <tr>
     <td>
-       <!--> <a asp-action="Edit" asp-route-id="@ViewBag">Edit</a> |
+       <a asp-action="Edit" asp-route-id="@ViewBag" >Edit</a> |
         <a asp-action="Details" asp-route-id="@ViewBag">Details</a> |
-        <a asp-action="Delete" asp-route-id="@ViewBag">Delete</a>-->
+        <a asp-action="Delete" asp-route-id="@ViewBag">Delete</a>
     </td>
 </tr>
