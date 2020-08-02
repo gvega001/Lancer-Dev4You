@@ -249,7 +249,7 @@ namespace Lancer.Controllers
         [HttpPost, Route("Project")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public IActionResult Project([Bind("ID,Amount,DaysToDelivery,Description,Summary")] ProjectViewModel project)
+        public IActionResult Project(ProjectViewModel project)
         {
             if (project is null)
             {
