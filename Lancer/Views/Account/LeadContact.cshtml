@@ -1,23 +1,24 @@
-﻿
-@model Lancer.Models.BusinessAccountViewModel
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@model Lancer.Models.LeadContactViewModel
 @{
-    ViewData["Title"] = "Business";
+    ViewData["Title"] = "LeadContact";
     Layout = "_Layout";
 }
-    <fieldset class="Business">
+<fieldset class="Lead Contact">
 
-        <div class="top-container">
-            <div class="fluid-container">
-                <div class="jumbotron jumbotron-fluid">
-                    <div class="container">
-                        <h1 class="display-4">Create Business</h1>
-                        <p class="lead">All Businesses Welcomed!</p>
+    <div class="top-container">
+        <div class="fluid-container">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Business Contact</h1>
+                    <p class="lead">Freelancer's Lead Contact</p>
 
-                    </div>
                 </div>
             </div>
         </div>
-        <form asp-action="Business" asp-controller="Home">
+    </div>
+    <form asp-action="LeadContact" asp-controller="Home">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Id" class="control-label"></label>
@@ -26,9 +27,14 @@
         </div>
 
         <div class="form-group">
-            <label asp-for="BusinessName" class="control-label"></label>
-            <input asp-for="BusinessName" class="form-control" />
-            <span asp-validation-for="BusinessName" class="text-danger"></span>
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="Email" class="control-label"></label>
@@ -51,11 +57,6 @@
             <span asp-validation-for="State" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="State" class="control-label"></label>
-            <input asp-for="State" class="form-control" />
-            <span asp-validation-for="State" class="text-danger"></span>
-        </div>
-        <div class="form-group">
             <label asp-for="ZipCode" class="control-label"></label>
             <input asp-for="ZipCode" class="form-control" />
             <span asp-validation-for="ZipCode" class="text-danger"></span>
@@ -64,14 +65,14 @@
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-primary" />
         </div>
-        </form>
+    </form>
 
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }
-    </fieldset>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</fieldset>
 <hr>

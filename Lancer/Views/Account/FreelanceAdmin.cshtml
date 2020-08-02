@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Lancer.Models.ProjectViewModel>
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@model IEnumerable<Lancer.Models.ProjectViewModel>
 @{
     ViewData["Title"] = "FreelanceAdmin";
     Layout = "_Layout";

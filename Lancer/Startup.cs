@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore;
 
 namespace Lancer
 {
@@ -36,13 +37,20 @@ namespace Lancer
             options.UseSqlServer(Configuration.GetConnectionString("FreelancerDataContext"),
                     optionsBuilders =>
                     optionsBuilders.MigrationsAssembly("Lancer")));
-            
+
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<IdentityDbContext>()
-                .AddDefaultTokenProviders();
-        }
+                .AddRoles<IdentityRole>();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdministratorRole",
+                    policy =>
+                    policy.RequireRole("Administrator")); 
+            });
+        }
+      
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -58,7 +66,10 @@ namespace Lancer
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseRouting();
+            app.UseAuthorization();
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
