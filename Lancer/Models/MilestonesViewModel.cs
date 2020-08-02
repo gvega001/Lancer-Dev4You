@@ -8,7 +8,7 @@ namespace Lancer.Models
 {
     public class MilestonesViewModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       
         public long Id { get; set; }
 
         

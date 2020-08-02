@@ -10,19 +10,21 @@ using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Lancer.Controllers
 {
 
-
+   
     public class HomeController : Controller
     {
-
-        
-      private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly ILogger<HomeController> _logger;
         private readonly FreelancerDataContext _db;
-        public HomeController(ILogger<HomeController> logger, FreelancerDataContext db)
+        private readonly SignInManager<IdentityUser> _signInManager;
+        public HomeController(UserManager<IdentityUser> userManager,ILogger<HomeController> logger, FreelancerDataContext db)
         {
+            _userManager = userManager;
             _logger = logger;
             _db = db;
         }
@@ -32,13 +34,13 @@ namespace Lancer.Controllers
             return View();
         }
         [HttpGet, Route("Contact")]
-
         public IActionResult Contact()
         {
-          
+
             return View();
         }
         // Post: ContactController/Create
+
         [HttpPost, Route("Contact")]
         public IActionResult Contact(LeadViewModel contact)
         {
@@ -59,6 +61,7 @@ namespace Lancer.Controllers
         {
             return View();
         }
+
         [HttpGet, Route("Services")]
         public IActionResult Services()
         {
@@ -69,9 +72,85 @@ namespace Lancer.Controllers
         {
             return View();
         }
-       
-        // GET: ContactController/Create
-        [HttpGet, Route("Freelancer")]
+
+
+        [HttpGet, Route("Login")]
+        public IActionResult Login()
+        {
+            return View(new LoginViewModel());
+        }
+
+        [HttpPost, Route("Login")]
+        public async Task<IActionResult> Login(LoginViewModel login, string returnUrl = null)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(
+                login.EmailAddress, login.Password,
+                login.RememberMe, false
+            );
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Login error!");
+                return View();
+            }
+
+            if (string.IsNullOrWhiteSpace(returnUrl))
+                return RedirectToAction("Index", "Home");
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout(string returnUrl = null)
+        {
+            await _signInManager.SignOutAsync();
+
+            if (string.IsNullOrWhiteSpace(returnUrl))
+                return RedirectToAction("Index", "Home");
+
+            return Redirect(returnUrl);
+        }
+        [HttpGet, Route("Register")]
+        public IActionResult Register()
+        {
+            return View(new RegisterViewModel());
+        }
+
+        [HttpPost, Route("Register")]
+        public async Task<IActionResult> Register(RegisterViewModel registration)
+        {
+            if (!ModelState.IsValid)
+                return View(registration);
+
+            var newUser = new IdentityUser
+            {
+                Email = registration.EmailAddress,
+                UserName = registration.EmailAddress,
+            };
+
+            var result = await _userManager.CreateAsync(newUser, registration.Password);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors.Select(x => x.Description))
+                {
+                    ModelState.AddModelError("", error);
+                }
+
+                return View();
+            }
+
+            return RedirectToAction("Login");
+        }
+    
+
+    // GET: ContactController/Create
+    [HttpGet, Route("Freelancer")]
         [Authorize]
         public IActionResult Freelancer()
         {
@@ -94,49 +173,14 @@ namespace Lancer.Controllers
             _db.SaveChanges();
             return View();
         }
-        [HttpGet, Route("Login")]
-        public IActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost, Route("Login")]
-        public IActionResult Login(LoginViewModel login)
-        {
-            if (login is null)
-            {
-                throw new ArgumentNullException(nameof(login));
-            }
-
-            return View();
-        }
-        [HttpGet, Route("Register")]
-        [Authorize]
-        public IActionResult Register()
-        {
-            return View();
-        }
-        [HttpPost, Route("Register")]
-        public IActionResult Register(RegisterViewModel register)
-        {
-            if (register is null)
-            {
-                throw new ArgumentNullException(nameof(register));
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction("Login");
-            }
-            _db.Users.Add(register);
-            _db.SaveChanges();
-            return View();
-        } 
         [HttpGet, Route("Bid")]
+        [Authorize]
         public IActionResult Bid()
         {
             return View();
         }
         [HttpPost, Route("Bid")]
+        [Authorize]
         public IActionResult Bid(BidViewModel bid)
         {
             if (bid is null)
@@ -172,7 +216,8 @@ namespace Lancer.Controllers
             _db.BusinessAcounts.Add(business);
             _db.SaveChanges();
             return View();
-        } 
+        }
+       
         [HttpGet, Route("LeadContact")]
         [Authorize]
         public IActionResult LeadContact()
@@ -217,7 +262,7 @@ namespace Lancer.Controllers
             _db.Offers.Add(offer);
             _db.SaveChanges();
             return View();
-        } 
+        }
         [HttpGet, Route("Milestone")]
         [Authorize]
         public IActionResult Milestone()
@@ -239,8 +284,8 @@ namespace Lancer.Controllers
             _db.Milestones.Add(milestone);
             _db.SaveChanges();
             return View();
-        } 
-        [HttpGet,Route("Project")]
+        }
+        [HttpGet, Route("Project")]
         [Authorize]
         public IActionResult Project()
         {
@@ -301,13 +346,16 @@ namespace Lancer.Controllers
             throw new NotImplementedException();
         }
 
-      
+
 
         [HttpGet, Route("FreelanceAdmin")]
+        [Authorize]
         public IActionResult FreelanceAdmin()
         {
             return View(_db.Projects.ToList());
         }
-   
+
+
     }
 }
+

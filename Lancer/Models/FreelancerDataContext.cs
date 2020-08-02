@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace Lancer.Models
 {
 
-    public class FreelancerDataContext : DbContext 
+    public class FreelancerDataContext : IdentityDbContext
     {
    
 
@@ -18,7 +19,6 @@ namespace Lancer.Models
         public DbSet<MilestonesViewModel> Milestones { get; set; }
         public DbSet<OfferViewModel> Offers { get; set; }
         public DbSet<ProjectViewModel> Projects { get; set; }
-        public DbSet<RegisterViewModel> Users { get; set; }
 
         public FreelancerDataContext(DbContextOptions<FreelancerDataContext> options)
              : base(options)

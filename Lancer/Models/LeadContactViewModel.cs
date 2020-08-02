@@ -9,7 +9,6 @@ namespace Lancer.Models
 {
     public class LeadContactViewModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
       

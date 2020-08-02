@@ -7,7 +7,7 @@ namespace Lancer.Models
 {
     public class BusinessAccountViewModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       
         public long Id { get; set; }
 
         [Required]

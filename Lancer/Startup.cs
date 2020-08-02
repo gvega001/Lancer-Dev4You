@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Lancer
 {
@@ -29,14 +30,17 @@ namespace Lancer
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
-                    options.Conventions.AuthorizePage("/Freelancer");
-                    options.Conventions.AllowAnonymousToPage("/Login");
+                    options.Conventions.AuthorizePage("/FreelanceAdmin");
+                   
                 });
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<FreelancerDataContext>();
             services.AddDbContext<FreelancerDataContext>(options =>
             {
-                var connectionString = Configuration.GetConnectionString("FreelancerDataContent");
+                var connectionString = Configuration.GetConnectionString("FreelancerDataContext");
                 options.UseSqlServer(connectionString);
-            });
+            });   
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,9 +60,8 @@ namespace Lancer
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
-
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 
 namespace Lancer.Models
-{   
+{
     public class FreeLancerViewModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        
         public long Id { get; set; }
 
         [Required]

@@ -4,17 +4,15 @@ using System.Security.Policy;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
+using System.Runtime.CompilerServices;
 
 namespace Lancer.Models
 {
-
+   
     public class RegisterViewModel
     {
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
-
+       
         [Required]
         [EmailAddress, MaxLength(500)]
         [Display(Name = "Email Address")]
