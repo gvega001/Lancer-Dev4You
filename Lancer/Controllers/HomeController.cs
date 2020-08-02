@@ -22,8 +22,9 @@ namespace Lancer.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly FreelancerDataContext _db;
         private readonly SignInManager<IdentityUser> _signInManager;
-        public HomeController(UserManager<IdentityUser> userManager,ILogger<HomeController> logger, FreelancerDataContext db)
+        public HomeController(SignInManager<IdentityUser> signInManager,UserManager<IdentityUser> userManager,ILogger<HomeController> logger, FreelancerDataContext db)
         {
+            _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _db = db;
@@ -127,13 +128,13 @@ namespace Lancer.Controllers
             if (!ModelState.IsValid)
                 return View(registration);
 
-            var newUser = new IdentityUser
+            IdentityUser newUser = new IdentityUser
             {
                 Email = registration.EmailAddress,
                 UserName = registration.EmailAddress,
             };
 
-            var result = await _userManager.CreateAsync(newUser, registration.Password);
+            var result =await _userManager.CreateAsync(newUser, registration.Password);
 
             if (!result.Succeeded)
             {

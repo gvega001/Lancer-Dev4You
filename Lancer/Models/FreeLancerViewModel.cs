@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,9 +8,11 @@ using System.Text.RegularExpressions;
 
 namespace Lancer.Models
 {
+    [Authorize]
+    [BindProperties]
     public class FreeLancerViewModel
     {
-        
+     
         public long Id { get; set; }
 
         [Required]

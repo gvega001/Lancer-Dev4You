@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Lancer.Models
     {
 
-    public class LoginViewModel: Attribute
+    public class LoginViewModel
     {
        
         [Required]

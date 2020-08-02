@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Lancer
 {
@@ -25,22 +26,21 @@ namespace Lancer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
-            services.AddMvc()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AuthorizePage("/FreelanceAdmin");
-                   
-                });
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<FreelancerDataContext>();
+          
             services.AddDbContext<FreelancerDataContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("FreelancerDataContext");
                 options.UseSqlServer(connectionString);
-            });   
-           
+            });
+            services.AddDbContext<IdentityDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("FreelancerDataContext"),
+                    optionsBuilders =>
+                    optionsBuilders.MigrationsAssembly("Lancer")));
+            
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityDbContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,10 +58,7 @@ namespace Lancer
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-            app.UseAuthorization();
-            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

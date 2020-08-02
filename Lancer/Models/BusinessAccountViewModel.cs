@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -5,9 +7,11 @@ using System.Text.RegularExpressions;
 
 namespace Lancer.Models
 {
+    [Authorize]
+    [BindProperties]
     public class BusinessAccountViewModel
     {
-       
+     
         public long Id { get; set; }
 
         [Required]

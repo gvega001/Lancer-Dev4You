@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lancer.Models
 {
- 
+    [Authorize]
+    [BindProperties]
     public class ProjectViewModel
     {
 

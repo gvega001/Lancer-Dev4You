@@ -5,9 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Lancer.Models
 {
+    [Authorize]
+    [BindProperties]
     public class OfferViewModel
     {
        

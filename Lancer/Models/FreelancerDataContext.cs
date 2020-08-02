@@ -9,7 +9,6 @@ namespace Lancer.Models
 
     public class FreelancerDataContext : IdentityDbContext
     {
-   
 
         public DbSet<BidViewModel> Bids { get; set; }
         public DbSet<BusinessAccountViewModel> BusinessAcounts { get; set; }

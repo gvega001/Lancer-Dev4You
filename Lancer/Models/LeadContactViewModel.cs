@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lancer.Models
 {
+    [Authorize]
+    [BindProperties]
     public class LeadContactViewModel
     {
         public long Id { get; set; }
