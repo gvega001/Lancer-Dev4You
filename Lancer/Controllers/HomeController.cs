@@ -8,6 +8,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lancer.Controllers
 {
@@ -238,7 +240,7 @@ namespace Lancer.Controllers
             _db.SaveChanges();
             return View();
         } 
-        [Route("Project")]
+        [HttpGet,Route("Project")]
         [Authorize]
         public IActionResult Project()
         {
@@ -247,7 +249,7 @@ namespace Lancer.Controllers
         [HttpPost, Route("Project")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public IActionResult Project(ProjectViewModel project)
+        public IActionResult Project([Bind("ID,Amount,DaysToDelivery,Description,Summary")] ProjectViewModel project)
         {
             if (project is null)
             {
@@ -255,33 +257,57 @@ namespace Lancer.Controllers
             }
             if (!ModelState.IsValid)
             {
+                return RedirectToAction("Project");
+            }
+            _db.Projects.Add(project);
+            _db.SaveChanges();
+            return View();
+        }
+        [HttpPatch, Route("Project")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Project(long id, [Bind("ID,Amount,DaysToDelivery,Description,Summary")] ProjectViewModel project)
+        {
+            if (id != project.Id)
+            {
+                throw new ArgumentNullException(nameof(project));
+            }
+            if (!ModelState.IsValid)
+            {
+                try
+                {
+                    _db.Update(project);
+                    await _db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProjectExists(project))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction("FreelanceAdmin");
             }
             _db.Projects.Add(project);
             _db.SaveChanges();
             return View();
-        }  
+        }
+
+        private bool ProjectExists(ProjectViewModel project)
+        {
+            throw new NotImplementedException();
+        }
+
+      
+
         [HttpGet, Route("FreelanceAdmin")]
         public IActionResult FreelanceAdmin()
         {
             return View(_db.Projects.ToList());
         }
-        // GET: Movies/Edit/5 
-        [HttpGet, Route("EditProject")]
-        public async Task<IActionResult> EditProject(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var project = await _db.Projects.FindAsync(id);
-            if (project == null)
-            {
-                return NotFound();
-            }
-            return View(_db.Projects.ToList());
-        }
-
+   
     }
 }
